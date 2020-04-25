@@ -30,6 +30,7 @@ public class FileEncryptor {
 		FileEncryptor fe1 = new FileEncryptor();
 		fe1.MessageEncryptor();
 	}
+
 	
 	public void MessageEncryptor() {
 		String msg = JOptionPane.showInputDialog("Please enter in the message you wish to encrypt:");
@@ -44,30 +45,50 @@ public class FileEncryptor {
 			boolean lettercheck = false;
 			boolean found = false;
 			
-			if (msg.charAt(i).toUpperCase == true) {
-				
-			}
 			for (int j = 0; j < alphabetLC.length; j++) {
 				if (msg.charAt(i) == alphabetLC[j]) {					
-					if (j+key > alphabetLC.length) {
+					if (j+key+1 > alphabetLC.length) {
 						encryptedmsg = encryptedmsg + alphabetLC[(j+key)-alphabetLC.length];
 						lettercheck = true;
 						found = true;
+						System.out.println("over");
 						break;
-					} else if (j+key < 0) {
+					} else if (j+key+1 < 0) {
 						encryptedmsg = encryptedmsg + alphabetLC[alphabetLC.length-(j+key)];
 						lettercheck = true;
 						found = true;
+						System.out.println("under");
 						break;
 					} else {
+						System.out.println(j+key);
 						encryptedmsg = encryptedmsg + alphabetLC[j+key];
 						lettercheck = true;
 						found = true;
+						System.out.println("norm");
 						break;
 					}
-					
 				} 
 			} 
+			
+			if (!found) {
+				for (int j = 0; j < alphabetUC.length; j++) {
+					if (msg.charAt(i) == alphabetUC[j]) {					
+						if (j+key+1 > alphabetUC.length) {
+							encryptedmsg = encryptedmsg + alphabetUC[(j+key)-alphabetUC.length];
+							lettercheck = true;
+							break;
+						} else if (j+key+1 < 0) {
+							encryptedmsg = encryptedmsg + alphabetUC[alphabetUC.length-(j+key)];
+							lettercheck = true;
+							break;
+						} else {
+							encryptedmsg = encryptedmsg + alphabetUC[j+key];
+							lettercheck = true;
+							break;
+						}
+					}
+				}
+			}
 			
 			if (!lettercheck) {
 				encryptedmsg = encryptedmsg + msg.charAt(i);
@@ -77,12 +98,11 @@ public class FileEncryptor {
 		try {
 			FileWriter fw = new FileWriter("src/_02_File_Encrypt_Decrypt/Encrypt", true);
 		
-			fw.write("\n" + encryptedmsg + "\n");
+			fw.write("\n(" + key + ") " + encryptedmsg + "\n");
 			fw.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-				
 	}
 }
