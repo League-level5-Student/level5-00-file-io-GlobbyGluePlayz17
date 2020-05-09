@@ -1,6 +1,8 @@
 package _04_Directory_Iteration;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
@@ -18,7 +20,23 @@ public class DirectoryIterator {
 			File[] files = directory.listFiles();
 			if(files != null) {
 				for(File f : files) {
-				  System.out.println(f.getAbsolutePath());
+				  if (f.isDirectory() == true) {
+					  System.out.println(f.getName());
+					  System.out.println(f.listFiles());
+				}
+				  if (f.getName().contains(".java")) {
+					  try {
+						  	System.out.println(f.getPath());
+							FileWriter fw = new FileWriter(f.getPath());
+							
+							fw.write("\n\n Copyright © 2020 Rachel Yang");
+								
+							fw.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+				}
+				  
 				}
 			}
 		}
