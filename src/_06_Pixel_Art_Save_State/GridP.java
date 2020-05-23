@@ -3,10 +3,11 @@ package _06_Pixel_Art_Save_State;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
-public class ejhf extends JPanel{
+public class GridP extends JPanel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int windowWidth;
@@ -17,11 +18,11 @@ public class ejhf extends JPanel{
 	private int cols;
 	
 	//1. Create a 2D array of pixels. Do not initialize it yet.
-	asdf[][] pixels;
+	Pix[][] pixels;
 	
 	private Color color;
 	
-	public ejhf(int w, int h, int r, int c) {
+	public GridP(int w, int h, int r, int c) {
 		this.windowWidth = w;
 		this.windowHeight = h;
 		this.rows = r;
@@ -35,12 +36,12 @@ public class ejhf extends JPanel{
 		setPreferredSize(new Dimension(windowWidth, windowHeight));
 		
 		//2. Initialize the pixel array using the rows and cols variables.
-		pixels = new asdf[rows][cols];
+		pixels = new Pix[rows][cols];
 		
 		//3. Iterate through the array and initialize each element to a new pixel.
 		for (int i = 0; i < pixels.length; i++) {
 			for (int j = 0; j < pixels[i].length; j++) {
-				pixels[i][j] = new asdf(pixelWidth, pixelHeight);
+				pixels[i][j] = new Pix(pixelWidth, pixelHeight);
 			}
 		}
 		
@@ -90,3 +91,5 @@ public class ejhf extends JPanel{
 		
 	}
 }
+
+ //Copyright © 2020 Rachel Yang

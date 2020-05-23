@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ewfa extends JPanel{
+public class GridInputP extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTextField windowWidthField;
 	private JTextField windowHeightField;
@@ -14,9 +14,9 @@ public class ewfa extends JPanel{
 	private JTextField colsField;
 	private JButton submitButton;
 			
-	kde pam;
+	PixArtMaker pam;
 	
-	public ewfa(kde pam) {
+	public GridInputP(PixArtMaker pam) {
 		this.pam = pam;
 		
 		windowWidthField = new JTextField(5);
@@ -70,3 +70,5 @@ public class ewfa extends JPanel{
 	
 	
 }
+
+ //Copyright © 2020 Rachel Yang

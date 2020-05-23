@@ -11,15 +11,16 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-	public class kde implements MouseListener, ActionListener{
+	public class PixArtMaker implements MouseListener, ActionListener{
 		private JFrame window;
 		private JButton savebutton;
-		private ewfa gip;
-		private ejhf gp;
-		bruh csp;
+		private GridInputP gip;
+		private GridP gp;
+		ColorSelect csp;
+		SaveWithSerialize sws;
 		
 		public void start() {
-			gip = new ewfa(this);	
+			gip = new GridInputP(this);	
 			window = new JFrame("Pixel Art");
 			window.setLayout(new FlowLayout());
 			window.setResizable(false);
@@ -31,26 +32,28 @@ import javax.swing.JFrame;
 			
 			savebutton = new JButton("Save");
 			savebutton.setSize(50, 70);
-			savebutton.setLocation(ejhf.WIDTH-60, ejhf.HEIGHT);
+			savebutton.setLocation(GridP.WIDTH-60, GridP.HEIGHT);
 			savebutton.addActionListener(this);
 			window.add(savebutton);
 
 		}
 
 		public void submitGridData(int w, int h, int r, int c) {
-			gp = new ejhf(w, h, r, c);
-			csp = new bruh();
+			gp = new GridP(w, h, r, c);
+			csp = new ColorSelect();
 			window.remove(gip);
 			window.add(gp);
 			window.add(csp);
 			gp.repaint();
 			gp.addMouseListener(this);
 			
+			sws = new SaveWithSerialize();
+			
 			window.pack();
 		}
 		
 		public static void main(String[] args) {
-			new kde().start();
+			new PixArtMaker().start();
 		}
 
 		@Override
@@ -81,16 +84,11 @@ import javax.swing.JFrame;
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if (e.getSource() == savebutton) {
-				try {
-					FileWriter fw = new FileWriter("src/_00_Intro_To_File_Input_and_Output/test2.txt");
-					
-					fw.
-						
-					fw.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				sws.Save(new GridP(w, r, h, c));;
 			}
 		}
 	
 }
+
+
+ //Copyright © 2020 Rachel Yang

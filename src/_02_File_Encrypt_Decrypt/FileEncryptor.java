@@ -106,3 +106,6 @@ public class FileEncryptor {
 		}
 	}
 }
+
+
+ //Copyright © 2020 Rachel Yang

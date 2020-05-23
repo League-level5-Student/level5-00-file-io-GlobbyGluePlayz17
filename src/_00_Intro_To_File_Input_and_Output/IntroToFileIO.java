@@ -70,3 +70,6 @@ public class IntroToFileIO {
 		}
 	}
 }
+
+
+ //Copyright © 2020 Rachel Yang

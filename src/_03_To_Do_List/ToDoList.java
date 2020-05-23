@@ -180,7 +180,9 @@ public class ToDoList implements ActionListener {
 				i.printStackTrace();
 			}
 			
-			lastfileloc = input;
 		}
 	}
 }
+
+
+ //Copyright © 2020 Rachel Yang

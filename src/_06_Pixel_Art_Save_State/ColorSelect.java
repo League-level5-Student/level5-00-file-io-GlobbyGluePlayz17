@@ -14,7 +14,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class bruh extends JPanel implements MouseListener, ChangeListener{
+public class ColorSelect extends JPanel implements MouseListener, ChangeListener{
 	private static final long serialVersionUID = 1L;
 	
 	public static final int MAX_COLOR = 256;
@@ -32,7 +32,7 @@ public class bruh extends JPanel implements MouseListener, ChangeListener{
 	private JLabel colorLabel;
 	private BufferedImage colorImage;
 	
-	public bruh() {
+	public ColorSelect() {
 		rSlider = new JSlider(JSlider.VERTICAL);
 		gSlider = new JSlider(JSlider.VERTICAL);
 		bSlider = new JSlider(JSlider.VERTICAL);
@@ -126,3 +126,6 @@ public class bruh extends JPanel implements MouseListener, ChangeListener{
 		add(colorLabel);
 	}
 }
+
+
+ //Copyright © 2020 Rachel Yang

@@ -7,3 +7,6 @@ public class CustomException extends Exception {
 		JOptionPane.showMessageDialog(null, "Error. Please try again.");
 	}
 }
+
+
+ //Copyright © 2020 Rachel Yang

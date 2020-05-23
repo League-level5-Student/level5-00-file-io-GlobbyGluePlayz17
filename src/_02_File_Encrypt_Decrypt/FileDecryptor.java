@@ -129,3 +129,5 @@ public class FileDecryptor {
 		JOptionPane.showMessageDialog(null, "Your decrypted message is: " + decryptedmsg);
 	}
 }
+
+ //Copyright © 2020 Rachel Yang
