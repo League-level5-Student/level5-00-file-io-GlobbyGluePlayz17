@@ -20,12 +20,25 @@ import javax.swing.JFrame;
 		SaveWithSerialize sws;
 		
 		public void start() {
-			gip = new GridInputP(this);	
 			window = new JFrame("Pixel Art");
 			window.setLayout(new FlowLayout());
 			window.setResizable(false);
 			
-			window.add(gip);
+			try {
+				sws = new SaveWithSerialize();
+				gp = sws.LoadGrid();
+				window.add(gp);
+				csp = new ColorSelect();
+				window.add(csp);
+				gp.repaint();
+				gp.addMouseListener(this);
+				
+				window.pack();
+			} catch (NullPointerException e) {
+				gip = new GridInputP(this);	
+				window.add(gip);
+			}
+			
 			window.pack();
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			window.setVisible(true);
@@ -46,8 +59,6 @@ import javax.swing.JFrame;
 			window.add(csp);
 			gp.repaint();
 			gp.addMouseListener(this);
-			
-			sws = new SaveWithSerialize();
 			
 			window.pack();
 		}
@@ -84,7 +95,8 @@ import javax.swing.JFrame;
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if (e.getSource() == savebutton) {
-				sws.Save(new GridP(w, r, h, c));;
+				sws.SaveGrid(gp);
+				System.out.println("saved");
 			}
 		}
 	

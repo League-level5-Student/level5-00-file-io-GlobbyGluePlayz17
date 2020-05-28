@@ -12,7 +12,7 @@ import _05_Serialization.SaveData;
 public class SaveWithSerialize {
 	private static final String DATA_FILE = "src/_06_Pixel_Art_Save_State/Saved";
 	
-	public void Save(GridP data) {
+	public void SaveGrid(GridP data) {
 		try (FileOutputStream fos = new FileOutputStream(new File(DATA_FILE)); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
 			oos.writeObject(data);
 		} catch (IOException e) {
@@ -20,16 +20,16 @@ public class SaveWithSerialize {
 		}
 	}
 	
-	private static GridP Load() {
+	public GridP LoadGrid() {
+		GridP gp = null;
 		try (FileInputStream fis = new FileInputStream(new File(DATA_FILE)); ObjectInputStream ois = new ObjectInputStream(fis)) {
-			return (GridP) ois.readObject();
+			gp = (GridP) ois.readObject();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return gp;
 	}
 
 }
