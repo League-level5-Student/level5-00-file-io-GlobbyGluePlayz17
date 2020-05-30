@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 	import java.awt.event.MouseListener;
+import java.io.EOFException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
 	public class PixArtMaker implements MouseListener, ActionListener{
 		private JFrame window;
 		private JButton savebutton;
+		private JButton newbutton;
 		private GridInputP gip;
 		private GridP gp;
 		ColorSelect csp;
@@ -22,7 +24,8 @@ import javax.swing.JFrame;
 		public void start() {
 			window = new JFrame("Pixel Art");
 			window.setLayout(new FlowLayout());
-			window.setResizable(false);
+			window.setResizable(false);			
+			
 			
 			try {
 				sws = new SaveWithSerialize();
@@ -33,22 +36,31 @@ import javax.swing.JFrame;
 				gp.repaint();
 				gp.addMouseListener(this);
 				
+				newbutton = new JButton("New");
+				newbutton.addActionListener(this);
+				window.add(newbutton);
+				
+				savebutton = new JButton("Save");
+				savebutton.addActionListener(this);
+				window.add(savebutton);		
+				
 				window.pack();
+				
 			} catch (NullPointerException e) {
 				gip = new GridInputP(this);	
 				window.add(gip);
+				
+				newbutton = new JButton("New");
+				newbutton.addActionListener(this);
+				
+				savebutton = new JButton("Save");
+				savebutton.addActionListener(this);
 			}
 			
 			window.pack();
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			window.setVisible(true);
 			
-			savebutton = new JButton("Save");
-			savebutton.setSize(50, 70);
-			savebutton.setLocation(GridP.WIDTH-60, GridP.HEIGHT);
-			savebutton.addActionListener(this);
-			window.add(savebutton);
-
 		}
 
 		public void submitGridData(int w, int h, int r, int c) {
@@ -59,6 +71,9 @@ import javax.swing.JFrame;
 			window.add(csp);
 			gp.repaint();
 			gp.addMouseListener(this);
+			
+			window.add(newbutton);
+			window.add(savebutton);	
 			
 			window.pack();
 		}
@@ -97,6 +112,23 @@ import javax.swing.JFrame;
 			if (e.getSource() == savebutton) {
 				sws.SaveGrid(gp);
 				System.out.println("saved");
+			}
+			
+			if (e.getSource() == newbutton) {
+				try {
+					FileWriter fw = new FileWriter("src/_06_Pixel_Art_Save_State/Saved");
+					
+					fw.write("");
+						
+					fw.close();
+				} catch (IOException b) {
+					b.printStackTrace();
+				}
+				
+				System.out.println("cleared, begin start");
+				
+				window.dispose();
+				start();
 			}
 		}
 	
